@@ -1,15 +1,17 @@
+
 let timerId; 
 
-const startButton = document.getElementById('start'); 
+const startButton = document.getElementById('start');
 startButton.addEventListener('click', function () {
-    
-    timerId = setInterval(updateClock, 1000); 
+    if (!timerId) {
+        timerId = setInterval(updateClock, 1000); 
+    }
 });
 
-const stopButton = document.getElementById('stop'); 
+const stopButton = document.getElementById('stop');
 stopButton.addEventListener('click', function () {
-    
     clearInterval(timerId); 
+    timerId = null; 
 });
 
 function updateClock() {
@@ -20,3 +22,4 @@ function updateClock() {
     const seconds = String(now.getSeconds()).padStart(2, '0'); 
     clock.textContent = hours + ':' + minutes + ':' + seconds;
 }
+
